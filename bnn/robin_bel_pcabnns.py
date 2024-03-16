@@ -87,7 +87,7 @@ y_val_pca = pca_Y.transform(y_val_scaled)
 input_shape = X_train_pca.shape[1]
 output_dim = y_train_pca.shape[1]
 hidden_units = 64  # number of hidden units in the dense layer
-num_components = 3  # number of components in the mixture
+num_components = 10  # number of components in the mixture
 params_size = tfp.layers.MixtureNormal.params_size(num_components, output_dim)  # size of the parameters
 
 inputs = Input(shape=input_shape, name="input")  # input layer
