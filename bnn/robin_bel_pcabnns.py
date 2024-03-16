@@ -179,6 +179,8 @@ plt.title("Samples and True Value")
 plt.xlabel("Time Step")
 plt.ylabel("Value")
 plt.legend()
+plt.title(f"Test Sample {n_test} Predictions with Mixture Density Network")
+plt.savefig("mdn.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 

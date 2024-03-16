@@ -70,7 +70,7 @@ plt.legend(['Train', 'Validation'], loc='upper right')
 plt.show()
 
 # Select test 161 and plot the predictions
-test_sample = 1
+test_sample = 161
 x = X_test[test_sample]
 y_true = y_test[test_sample]
 
@@ -96,4 +96,6 @@ plt.title("Samples and True Value")
 plt.xlabel("Time Step")
 plt.ylabel("Value")
 plt.legend()
+plt.title(f"Test Sample {test_sample} Predictions with LSTM + Dropout")
+plt.savefig("lstm_dropout.png", dpi=300, bbox_inches='tight')
 plt.show()
