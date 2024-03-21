@@ -57,6 +57,7 @@ model = Sequential([
 ])
 
 
+@tf.autograph.experimental.do_not_convert
 def nll(y_true, y_pred):
     """
     Negative log likelihood loss function
@@ -71,7 +72,7 @@ def nll(y_true, y_pred):
 model.compile(optimizer=tf.optimizers.Adam(learning_rate=0.001), loss=nll)
 
 # Fit the model
-early_stopping = EarlyStopping(monitor='val_loss', patience=30, mode='min')
+early_stopping = EarlyStopping(monitor='val_loss', patience=10, mode='min')
 history = model.fit(X_train, y_train, epochs=1000, validation_split=0.1, callbacks=[early_stopping], batch_size=32)
 
 # Plot training history
