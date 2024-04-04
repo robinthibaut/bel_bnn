@@ -51,7 +51,8 @@ params_size = tfp.layers.MixtureNormal.params_size(num_components, output_dim)  
 
 # Keep dropout on after model is trained
 model = Sequential([
-    LSTM(100, activation='tanh', input_shape=(time_steps, n_features), return_sequences=False),
+    LSTM(50, activation='tanh', input_shape=(time_steps, n_features), return_sequences=True, dropout=0.2),
+    LSTM(50, activation='tanh', input_shape=(time_steps, n_features), return_sequences=False, dropout=0.2),
     Dense(params_size),  # Adjust the number of neurons to match the dimensions of y
     tfp.layers.MixtureNormal(num_components, output_dim)
 ])
@@ -69,7 +70,7 @@ def nll(y_true, y_pred):
 
 
 # Compile the model
-model.compile(optimizer=tf.optimizers.Adam(learning_rate=0.001), loss=nll)
+model.compile(optimizer=tf.optimizers.Adam(learning_rate=0.0001), loss=nll)
 
 # Fit the model
 early_stopping = EarlyStopping(monitor='val_loss', patience=10, mode='min')
@@ -85,7 +86,7 @@ plt.legend(['Train', 'Validation'], loc='upper right')
 plt.show()
 
 # Select test 161 and plot the predictions
-test_sample = 161
+test_sample = 1
 x = X_test[test_sample]
 y_true = y_test[test_sample]
 
